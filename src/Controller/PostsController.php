@@ -23,6 +23,15 @@ class PostsController extends AbstractController
 
         return $this->render('posts/index.html.twig', compact('posts'));
     }
+
+    /**
+     * @Route("/posts/{id<[0-9]+>}", name="app_posts_show", methods="GET")
+     */
+    public function show(posts $post): Response
+    {
+        return $this->render('posts/show.html.twig', compact('post'));
+    }
+
     /**
      * @Route("/posts/create", name="app_posts_create", methods={"GET","POST"})
      */
@@ -40,6 +49,33 @@ class PostsController extends AbstractController
             return $this->redirectToRoute('app_posts', ['id' => $post->getId()]);
         }
         return $this->render('posts/create.html.twig', ['form' => $form->createView()]);
+    }
+    /**
+     * @Route("/posts/{id<[0-9]+>}/edit", name="app_posts_edit", methods={"GET", "PUT"})
+     */
+    public function edit(Request $request, EntityManagerInterface $em, posts $post): Response
+    {
+        $form = $this->createForm(postFormType::class, $post, ['method' => 'PUT']);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->flush();
+            $this->addFlash('success', 'post successfully updated!');
+
+            return $this->redirectToRoute('app_posts_show', ['id' => $post->getId()]);
+        }
+        return $this->render('posts/edit.html.twig', ['post' => $post, 'form' => $form->createView()]);
+    }
+    /**
+     * @Route("/posts/{id<[0-9]+>}", name="app_posts_delete", methods={"DELETE"})
+     */
+    public function delete(Request $request, EntityManagerInterface $em, posts $post): Response
+    {
+        if ($this->isCsrfTokenValid('post_deletion_' . $post->getId(), $request->request->get('csrf_token'))) {
+            $em->remove($post);
+            $em->flush();
+            $this->addFlash('info', 'post successfully deleted!');
+        }
+        return $this->redirectToRoute('app_home');
     }
 
 }

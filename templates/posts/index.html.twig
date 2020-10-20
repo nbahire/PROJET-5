@@ -1,21 +1,40 @@
 {% extends 'layouts/base.html.twig' %}
 
 
-{% block title %}Hello PostsController!{% endblock %}
+{% block title 'Billets de blog!' %}
+
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+	{% if posts|length > 0 %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/ultra/Documents/SYMFONY/MyPortefolio/src/Controller/PostsController.php'|file_link(0) }}">src/Controller/PostsController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/ultra/Documents/SYMFONY/MyPortefolio/templates/posts/index.html.twig'|file_link(0) }}">templates/posts/index.html.twig</a></code></li>
-    </ul>
-</div>
+		{% for row in posts|batch(3) %}
+			<div class="row mb-5">
+				{% for post in row %}
+					<div class="col-md-4">
+
+						<article class="post bg-white rounded shadow">
+							<a class="text-muted text-secondary text-decoration-none" href="{{path('app_posts_show', {id: post.id})}}">
+								<h2 class="h5 pl-3 pt-3 ">{{post.title}}</h2>
+							</a>
+							<p class="pt-3 text-break ">
+								{{post.description}}
+							</p>
+
+
+						</article>
+					</div>
+
+				{% endfor %}
+
+			</div>
+		{% endfor %}
+
+	{% else %}
+		<p class="h2 mt-5 text-center">No post yet.
+			<a href="{{ path('app_posts_create')}}">Be the first!</a>
+		</p>
+	{% endif %}
+
+
 {% endblock %}
