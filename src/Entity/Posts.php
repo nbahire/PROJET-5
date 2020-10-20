@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\PostsRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\PostsRepository;
+use App\Entity\traits\Timestampable;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass=PostsRepository::class)
@@ -14,6 +15,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Posts
 {
+    use Timestampable;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -32,19 +35,10 @@ class Posts
     private $description;
 
     /**
-     * @ORM\Column(type="datetime")
-     */
-    private $createdAt;
-
-    /**
      * @ORM\OneToMany(targetEntity=Comments::class, mappedBy="posts", orphanRemoval=true)
      */
     private $comments;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $updatedAt;
 
     public function __construct()
     {
@@ -80,17 +74,6 @@ class Posts
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
 
     /**
      * @return Collection|Comments[]
@@ -123,16 +106,5 @@ class Posts
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
 
 }
