@@ -9,6 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=PostsRepository::class)
+ * @ORM\Table(name="posts")
+ * @ORM\HasLifecycleCallbacks
  */
 class Posts
 {
@@ -40,8 +42,9 @@ class Posts
     private $comments;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Categories::class, inversedBy="posts")
+     * @ORM\Column(type="datetime")
      */
+    private $updatedAt;
 
     public function __construct()
     {
@@ -116,6 +119,18 @@ class Posts
                 $comment->setPosts(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

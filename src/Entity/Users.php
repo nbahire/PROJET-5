@@ -48,6 +48,11 @@ class Users implements UserInterface
      */
     private $comments;
 
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $username;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -170,6 +175,13 @@ class Users implements UserInterface
                 $comment->setUsers(null);
             }
         }
+
+        return $this;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
 
         return $this;
     }
