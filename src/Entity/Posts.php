@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PostsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +33,22 @@ class Posts
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Comments::class, mappedBy="posts", orphanRemoval=true)
+     */
+    private $comments;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Categories::class, inversedBy="posts")
+     */
+    private $categories;
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+        $this->categories = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -69,6 +87,63 @@ class Posts
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comments[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comments $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setPosts($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comments $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+            // set the owning side to null (unless already changed)
+            if ($comment->getPosts() === $this) {
+                $comment->setPosts(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Categories[]
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Categories $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Categories $category): self
+    {
+        if ($this->categories->contains($category)) {
+            $this->categories->removeElement($category);
+        }
 
         return $this;
     }

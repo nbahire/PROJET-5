@@ -39,9 +39,15 @@ class Categories
      */
     private $categories;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Posts::class, mappedBy="categories")
+     */
+    private $posts;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
+        $this->posts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -111,6 +117,34 @@ class Categories
             if ($category->getParent() === $this) {
                 $category->setParent(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Posts[]
+     */
+    public function getPosts(): Collection
+    {
+        return $this->posts;
+    }
+
+    public function addPost(Posts $post): self
+    {
+        if (!$this->posts->contains($post)) {
+            $this->posts[] = $post;
+            $post->addCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removePost(Posts $post): self
+    {
+        if ($this->posts->contains($post)) {
+            $this->posts->removeElement($post);
+            $post->removeCategory($this);
         }
 
         return $this;
