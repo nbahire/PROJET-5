@@ -42,12 +42,10 @@ class Posts
     /**
      * @ORM\ManyToMany(targetEntity=Categories::class, inversedBy="posts")
      */
-    private $categories;
 
     public function __construct()
     {
         $this->comments = new ArrayCollection();
-        $this->categories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -122,29 +120,4 @@ class Posts
         return $this;
     }
 
-    /**
-     * @return Collection|Categories[]
-     */
-    public function getCategories(): Collection
-    {
-        return $this->categories;
-    }
-
-    public function addCategory(Categories $category): self
-    {
-        if (!$this->categories->contains($category)) {
-            $this->categories[] = $category;
-        }
-
-        return $this;
-    }
-
-    public function removeCategory(Categories $category): self
-    {
-        if ($this->categories->contains($category)) {
-            $this->categories->removeElement($category);
-        }
-
-        return $this;
-    }
 }
