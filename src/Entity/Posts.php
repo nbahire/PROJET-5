@@ -7,6 +7,7 @@ use App\Repository\PostsRepository;
 use App\Entity\traits\Timestampable;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=PostsRepository::class)
@@ -40,7 +41,8 @@ class Posts
     private $comments;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(length=128, unique=true)
      */
     private $slug;
 
@@ -115,13 +117,5 @@ class Posts
     {
         return $this->slug;
     }
-
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
 
 }
