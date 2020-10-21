@@ -24,6 +24,14 @@ class PostsController extends AbstractController
         $posts= $paginator->paginate($datas,$request->query->getInt('page',1),4);
         return $this->render('posts/index.html.twig', compact('posts'));
     }
+    /**
+     * @Route("/users", name="app_users")
+     */
+    public function users()
+    {
+        return $this->render('users/index.html.twig', ['controller_name'=>'UsersController']);
+    }
+
 
     /**
      * @Route("/posts/{id<[0-9]+>}", name="app_posts_show", methods="GET")

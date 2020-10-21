@@ -8,10 +8,13 @@ use App\Entity\traits\Timestampable;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=PostsRepository::class)
  * @ORM\Table(name="posts")
+ * @Vich\Uploadable
  * @ORM\HasLifecycleCallbacks
  */
 class Posts
@@ -45,7 +48,17 @@ class Posts
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @var string
+     */
+    private $featured_image;
 
+    /**
+     * @Vich\UploadableField(mapping="featured_images", fileNameProperty="featured_image")
+     * @var File
+     */
+    private $imageFile;
 
     public function __construct()
     {
@@ -118,4 +131,56 @@ class Posts
         return $this->slug;
     }
 
+
+    /**
+     * Get the value of imageFile
+     *
+     * @return  File
+     */ 
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * Set the value of imageFile
+     *
+     * @param  File  $imageFile
+     *
+     * @return  self
+     */ 
+    public function setImageFile(File $image = null )
+    {
+
+        $this->imageFile = $image;
+
+        if ($image) {
+            $this->updated_at = new \DateTime('now');
+        }
+        return $this;
+    }
+
+    /**
+     * Get the value of featured_image
+     *
+     * @return  string
+     */ 
+    public function getFeatured_image()
+    {
+        return $this->featured_image;
+    }
+
+    /**
+     * Set the value of featured_image
+     *
+     * @param  string  $featured_image
+     *
+     * @return  self
+     */ 
+    public function setFeatured_image($featured_image)
+    {
+        $this->featured_image = $featured_image;
+
+        return $this;
+    }
 }
