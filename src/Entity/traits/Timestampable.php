@@ -9,6 +9,7 @@ use DateTimeImmutable;
  */
 trait Timestampable
 {
+
     /**
      * @ORM\Column(type="datetime", options={"default":"CURRENT_TIMESTAMP"})
      */
@@ -18,23 +19,35 @@ trait Timestampable
      * @ORM\Column(type="datetime", options={"default":"CURRENT_TIMESTAMP"})
      */
     private $updatedAt;
+    /**
+     * @return \DateTimeInterface|null
+     */
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
     }
-
+/**
+ * @param \DateTimeInterface $createdAt
+ * @return self
+ */
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
-
+/**
+ * @return \DateTimeInterface|null
+ */
     public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updatedAt;
     }
-
+/**
+ *
+ * @param \DateTimeInterface $updatedAt
+ * @return self
+ */
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
@@ -52,5 +65,4 @@ trait Timestampable
         }
         $this->setUpdatedAt(new DateTimeImmutable);
     }
-
 }

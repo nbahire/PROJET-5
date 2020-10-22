@@ -21,7 +21,17 @@ class UsersRepository extends ServiceEntityRepository implements PasswordUpgrade
     {
         parent::__construct($registry, Users::class);
     }
+    /**
+     * @return int|mexed|string
+     */
+    public function countAllUsers()
+    {
+        $queryBulder= $this->createQueryBuilder('a');
+        $queryBulder->select('COUNT(a.id) as value');
 
+        return $queryBulder->getQuery()->getOneOrNullResult();
+        
+    }
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
      */

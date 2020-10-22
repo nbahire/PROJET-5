@@ -2,14 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\CommentsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\traits\Timestampable;
+use App\Repository\CommentsRepository;
 
 /**
  * @ORM\Entity(repositoryClass=CommentsRepository::class)
  */
 class Comments
 {
+    use Timestampable;
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -22,10 +24,6 @@ class Comments
      */
     private $content;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $createdAt;
 
     /**
      * @ORM\Column(type="boolean")
@@ -62,18 +60,6 @@ class Comments
     public function setContent(string $content): self
     {
         $this->content = $content;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
 
         return $this;
     }

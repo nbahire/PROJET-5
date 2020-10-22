@@ -51,17 +51,17 @@ class Posts
      */
     private $slug;
 
+    
     /**
-     * @Vich\UploadableField(mapping="featured_images", fileNameProperty="featured_image")
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imageName;
+    /**
+     * @Vich\UploadableField(mapping="posts_images", fileNameProperty="ImageName")
      * @Assert\File(maxSize="8M")
      * @var File
      */
     private $imageFile;
-
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
-    private $imageName;
 
     public function __construct()
     {
