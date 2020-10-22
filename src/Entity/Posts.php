@@ -10,6 +10,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=PostsRepository::class)
@@ -48,17 +50,18 @@ class Posts
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @var string
-     */
-    private $featured_image;
 
     /**
      * @Vich\UploadableField(mapping="featured_images", fileNameProperty="featured_image")
+     * @Assert\File(maxSize="8M")
      * @var File
      */
     private $imageFile;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $imageName;
 
     public function __construct()
     {
@@ -160,27 +163,16 @@ class Posts
         return $this;
     }
 
-    /**
-     * Get the value of featured_image
-     *
-     * @return  string
-     */ 
-    public function getFeatured_image()
+    public function getImageName()
     {
-        return $this->featured_image;
+        return $this->imageName;
     }
 
-    /**
-     * Set the value of featured_image
-     *
-     * @param  string  $featured_image
-     *
-     * @return  self
-     */ 
-    public function setFeatured_image($featured_image)
+    public function setImageName($imageName)
     {
-        $this->featured_image = $featured_image;
+        $this->imageName = $imageName;
 
         return $this;
     }
+
 }

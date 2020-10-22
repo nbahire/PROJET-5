@@ -44,6 +44,11 @@ class Comments
      */
     private $posts;
 
+    public function __toString()
+    {
+        return $this->createdAt;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

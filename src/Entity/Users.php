@@ -51,11 +51,15 @@ class Users implements UserInterface
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $username;
+    private $user;
 
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+    }
+    public function __toString()
+    {
+        return $this->email;
     }
 
     public function getId(): ?int
@@ -182,6 +186,26 @@ class Users implements UserInterface
     public function setUsername(string $username): self
     {
         $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of user
+     */ 
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set the value of user
+     *
+     * @return  self
+     */ 
+    public function setUser($user)
+    {
+        $this->user = $user;
 
         return $this;
     }
