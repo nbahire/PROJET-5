@@ -138,9 +138,9 @@ class Posts
     /**
      * Get the value of imageFile
      *
-     * @return  File
+     * @return  File|null
      */ 
-    public function getImageFile()
+    public function getImageFile(): ?File
     {
         return $this->imageFile;
     }
@@ -148,16 +148,16 @@ class Posts
     /**
      * Set the value of imageFile
      *
-     * @param  File  $imageFile
+     * @param  File|null  $imageFile
      *
      * @return  self
      */ 
-    public function setImageFile(File $image = null )
+    public function setImageFile(File $imageFile = null )
     {
 
-        $this->imageFile = $image;
+        $this->imageFile = $imageFile;
 
-        if ($image) {
+        if ($imageFile) {
             $this->updated_at = new \DateTime('now');
         }
         return $this;

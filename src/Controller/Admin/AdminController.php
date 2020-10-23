@@ -27,7 +27,7 @@ class AdminController extends AbstractDashboardController
         $this->postsRepository = $postsRepository;
     }
     /**
-     * @Route("/admin_1804", name="app_admin")
+     * @Route("/admin_1804", name="admin_")
      * @Security("is_granted('ROLE_ADMIN')")
      */
     public function index(): Response
@@ -55,4 +55,5 @@ class AdminController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Commentaires', 'fa fa-comments',Comments::class);
         yield MenuItem::linkToCrud('Utilisateurs', 'fa fa-users',Users::class);
     }
+    
 }

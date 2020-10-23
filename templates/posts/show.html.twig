@@ -17,8 +17,10 @@
 
 						</small>
 					</p>
+
+					<img class="col-10 " src="/uploads/images/{{post.imageName}}" alt="">
 					<p class="pt-3 text-break ">
-						{{post.description|nl2br}}
+						{{(post.description|raw)}}
 
 					</p>
 
@@ -39,5 +41,43 @@
 
 		</div>
 	</div>
+	<div class="row">
+		<div class="col-md-6 ">
+			{% if app.user %}
+				<h1>Commenter</h1>
+				{{ include ("posts/_form.html.twig")}}
+			{% else %}
+				<p>
+					<a class="btn btn-success" href="{{ path('app_login')}}">
+						<i class="fa fa-sign-in" aria-hidden="true"></i>
+						Se connecter pour commenter
+					</a>
+					{{ 'post.to_publish_a_comment'|trans }}
+				</p>
+			{% endif %}
+
+		</div>
+	</div>
+
+
+	{% for comment in post.comments %}
+		<div class="row post-comment">
+			<a name="comment_{{ comment.id }}"></a>
+			<h4 class="col-sm-3">
+				<strong>{{ comment.users.name}}</strong>
+				<p>Posté le
+				</p>
+				<strong>{{ comment.publishedAt|format_datetime('medium', 'none', locale='fr') }}</strong>
+
+			</h4>
+			<div class="col-sm-9">
+				{{ comment.content }}
+			</div>
+		</div>
+	{% else %}
+		<div class="post-comment">
+			<p>pas de commentaires</p>
+		</div>
+	{% endfor %}
 
 {% endblock %}

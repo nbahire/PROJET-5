@@ -51,7 +51,7 @@ class Users implements UserInterface
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $user;
+    private $name;
 
     public function __construct()
     {
@@ -191,21 +191,21 @@ class Users implements UserInterface
     }
 
     /**
-     * Get the value of user
+     * Get the value of name
      */ 
-    public function getUser()
+    public function getName()
     {
-        return $this->user;
+        return $this->name;
     }
 
     /**
-     * Set the value of user
+     * Set the value of name
      *
      * @return  self
      */ 
-    public function setUser($user)
+    public function setName($name)
     {
-        $this->user = $user;
+        $this->name = $name;
 
         return $this;
     }

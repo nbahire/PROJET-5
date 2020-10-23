@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\traits\Timestampable;
 use App\Repository\CommentsRepository;
 
 /**
@@ -11,7 +10,6 @@ use App\Repository\CommentsRepository;
  */
 class Comments
 {
-    use Timestampable;
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -26,7 +24,7 @@ class Comments
 
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", options={"default":"0"})
      */
     private $moderate;
 
@@ -42,9 +40,16 @@ class Comments
      */
     private $posts;
 
-    public function __toString()
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="datetime", options={"default":"CURRENT_TIMESTAMP"})
+     */    
+    private $publishedAt;
+
+    public function __construct()
     {
-        return $this->createdAt;
+        $this->publishedAt = new \DateTime();
     }
 
     public function getId(): ?int
@@ -71,9 +76,13 @@ class Comments
 
     public function setModerate(bool $moderate): self
     {
-        $this->moderate = $moderate;
+        if (!null) {
+            $this->moderate = $moderate;
+            return $this;
+        }
+        return $moderate= 0;
+        
 
-        return $this;
     }
 
     public function getUsers(): ?Users
@@ -96,6 +105,18 @@ class Comments
     public function setPosts(?Posts $posts): self
     {
         $this->posts = $posts;
+
+        return $this;
+    }
+
+    public function getPublishedAt(): ?\DateTimeInterface
+    {
+        return $this->publishedAt;
+    }
+
+    public function setPublishedAt(\DateTimeInterface $publishedAt): self
+    {
+        $this->publishedAt = $publishedAt;
 
         return $this;
     }
