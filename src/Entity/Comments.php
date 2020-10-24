@@ -74,14 +74,11 @@ class Comments
         return $this->moderate;
     }
 
-    public function setModerate(bool $moderate): self
+    public function setModerate()
     {
-        if (!null) {
-            $this->moderate = $moderate;
-            return $this;
-        }
-        return $moderate= 0;
-        
+        $this->moderate = 0;
+            
+        return $this->moderate;;        
 
     }
 

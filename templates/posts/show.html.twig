@@ -59,25 +59,24 @@
 		</div>
 	</div>
 
+		{% for comment in post.comments %}
+			<div class="row post-comment">
+				<h4 class="col-sm-3">
+					{{ comment.users.name}}
+					<p>Posté le
+						{{ comment.publishedAt|format_datetime('medium', 'none', locale='fr') }}
+					</p>
 
-	{% for comment in post.comments %}
-		<div class="row post-comment">
-			<a name="comment_{{ comment.id }}"></a>
-			<h4 class="col-sm-3">
-				<strong>{{ comment.users.name}}</strong>
-				<p>Posté le
-				</p>
-				<strong>{{ comment.publishedAt|format_datetime('medium', 'none', locale='fr') }}</strong>
+				</h4>
 
-			</h4>
-			<div class="col-sm-9">
-				{{ comment.content }}
+				<div class="col-sm-9">
+					{{ comment.content }}
+				</div>
 			</div>
-		</div>
 	{% else %}
 		<div class="post-comment">
 			<p>pas de commentaires</p>
 		</div>
-	{% endfor %}
+		{% endfor %}
 
 {% endblock %}

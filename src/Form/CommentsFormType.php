@@ -13,7 +13,6 @@ class CommentsFormType extends AbstractType
     {
         $builder
             ->add('content')
-            ->add('moderate')
         ;
     }
 

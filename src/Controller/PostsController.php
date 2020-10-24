@@ -39,14 +39,15 @@ class PostsController extends AbstractController
     /**
      * @Route("/posts/{id<[0-9]+>}", name="app_posts_show", methods={"GET","POST"})
      */
-    public function show(Request $request, posts $post, EntityManagerInterface $em, CommentsRepository $commentsRepository): Response
+    public function show(Request $request, posts $post, EntityManagerInterface $em): Response
     {
         $comment = new Comments;
-        $comment->setUsers($this->getUser());
-        $post->addComment($comment);
         $form = $this->createForm(CommentsFormType::class, $comment);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setUsers($this->getUser());
+            $comment->setModerate();
+            $post->addComment($comment);
             $em->persist($comment);
             $em->flush();
             return $this->redirectToRoute('app_posts_show', ['id' => $post->getId()]);
@@ -60,7 +61,7 @@ class PostsController extends AbstractController
      * @Route("/posts/create", name="app_posts_create", methods={"GET","POST"})
      */
 
-    public function create(Request $request, EntityManagerInterface $em, UsersRepository $userRepository): Response
+    public function create(Request $request, EntityManagerInterface $em): Response
 
     {
         $post = new Posts;
