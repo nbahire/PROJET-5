@@ -3,12 +3,14 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 		<title>
 			{% block title %}Mon portefolio
 			{% endblock %}
 		</title>
+		<!-- Favicon-->
+		<link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
 		{% block stylesheets %}
-
 			{{encore_entry_link_tags('app')}}
 
 		{% endblock %}
@@ -18,18 +20,23 @@
 
 	<body>
 
+
 		{{ include('layouts/partials/_flash_messages.html.twig')}}
 		{{ include("layouts/partials/_nav.html.twig") }}
-<main role="main" class="container "> {% block body %}{% endblock %}
+<header role="header" class="pt-5 pb-5 text-white site-banner site-banner--dark site-banner--alt" style="background-color: #0E1C2A;"> {% block header %}{% endblock %}
+
+
+			</header>
+<main role="main" class="container mt-0"> {% block body %}{% endblock %}
+
 
 
 			</main>
 
 			{{ include("layouts/partials/_footer.html.twig") }}
 
-			{% block javascripts %}
-				{{encore_entry_script_tags('app')}}
-			{% endblock %}
-		</body>
-	</html>
-
+				{% block javascripts %}
+					{{encore_entry_script_tags('app')}}
+				{% endblock %}
+			</body>
+		</html>

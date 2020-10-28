@@ -1,16 +1,32 @@
-<nav class="navbar navbar-expand-sm navbar-light mb-4" style="background-color: #FFE8DC;">
+<nav class="navbar pt-2 pb-2 navbar-expand-sm navbar-dark " style="background-color: #112437;">
+
 
 	<div class="container">
-		<a class="navbar-brand" href="{{path("app_home")}}">Mon portefolio</a>
+		<a class="navbar-brand" href="{{path("app_home")}}">
+			<i class="pr-2 fas fa-home"></i>Mon portefolio</a>
+
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
 		<div class="collapse navbar-collapse" id="navbarsExample03">
-			<ul class="navbar-nav ml-auto">
-				<li class="nav-item">
-					<a class="nav-link" href="{{path("app_posts")}}">blog</a>
+			<ul class="navbar-nav ml-auto topnav">
 
+				<li class="nav-item">
+					<a class="nav-link " href="{{path("app_posts")}}">
+						Services</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" href="{{path("app_posts")}}">
+						A propos</a>
+				</li>
+
+
+				<li class="nav-item">
+					<a class="nav-link" href="{{path("app_posts")}}">
+						<i class="fas fa-blog "></i>
+						blog</a>
 				</li>
 
 				{% if app.user %}
@@ -20,7 +36,7 @@
 					</li>
 
 					<li class="nav-item">
-						<a class="nav-link " href="#">Account</a>
+						<a class="nav-link " href="{{path('app_users')}}">Account</a>
 					</li>
 
 					<li class="nav-item">
@@ -28,13 +44,13 @@
 					</li>
 				{% else %}
 					<li class="nav-item">
-						<a class="nav-link " href="{{path('app_register')}}">Register</a>
-
+						<a class="nav-link ml-5 btn btn-secondary text-white radius-0" href="{{path('app_register')}}">Sign In</a>
 
 					</li>
 
 					<li class="nav-item">
-						<a class="nav-link " href="{{path('app_login')}}">Login</a>
+						<a class="nav-link btn btn-danger text-white" href="{{path('app_login')}}">Log in</a>
+
 					</li>
 
 				{% endif %}

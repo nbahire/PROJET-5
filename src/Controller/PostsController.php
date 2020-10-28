@@ -7,8 +7,6 @@ use App\Entity\Comments;
 use App\Form\PostFormType;
 use App\Form\CommentsFormType;
 use App\Repository\PostsRepository;
-use App\Repository\UsersRepository;
-use App\Repository\CommentsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,7 +30,7 @@ class PostsController extends AbstractController
      */
     public function users()
     {
-        return $this->render('users/index.html.twig', ['controller_name'=>'UsersController']);
+        return $this->render('users/users.html.twig', []);
     }
 
 

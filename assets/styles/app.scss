@@ -2,6 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,600&display=swap');
 @import 'shared/variables';
 @import "~bootstrap";
+@import '~@fortawesome/fontawesome-free/css/fontawesome';
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
 
 html body{
     font-family: 'Montserrat', sans-serif;
@@ -24,4 +27,22 @@ html body{
     &.alert-info{
         background-color: blue;
     }
+}
+.avatar-pic {
+        @extend .mt-5, .text-center;
+    
+    img{
+        @extend  .mb-2,  .rounded,  .shadow,  .img-thumbnail, .bg-secondary;
+        width: 50%;
+    }
+}
+.site-banner {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 100px));
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 100px));
+
+}
+.site-cta{
+    -webkit-clip-path: polygon(0 0, 100% 50px, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 50px, 100% 100%, 0 100%);
+
 }
