@@ -27,7 +27,9 @@
 			<div class="mb-5">
 				<div class="mt-5 pb-5 d-flex justify-content-between border-bottom ">
 
-					<img class="rounded col-3" src="/uploads/images/{{post.imageName}}" alt="">
+					<time class="h4 time text-center text-success">
+						{{ post.createdAt| format_datetime('medium', 'none', locale='fr')}}
+					</time>
 
 					<article class="col-10 lg-10">
 						<h2 class="">
@@ -36,9 +38,6 @@
 								{{post.title}}
 							</a>
 						</h2>
-						<time class=" time text-center">
-							{{ post.createdAt| format_datetime('medium', 'none', locale='fr')}}
-						</time>
 						<div class="description  mt-3">
 							<p>
 								{{((post.description|u.truncate(300, ' ...', false))|raw)|nl2br}}
@@ -61,8 +60,6 @@
 		</div>
 
 	{% else %}
-		<p class="h2 mt-5 text-center">No post yet.
-			<a href="{{ path('app_posts_create')}}">Be the first!</a>
-		</p>
+		<p class="h2 mt-5 text-center">Pas encore de posts.</p>
 	{% endif %}
 {% endblock %}

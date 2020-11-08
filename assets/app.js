@@ -9,7 +9,7 @@
 import './styles/app.scss';
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
-import $ from 'jquery';
+import $, { data } from 'jquery';
 import 'bootstrap';
 import 'popper.js';
 
@@ -17,3 +17,18 @@ $('.custom-file-input').on('change', function (e) {
     let inputFile = e.currentTarget;
     $(inputFile).parent().find('.custom-file-label').html(inputFile.files[0].name);
 })
+
+// Reply box popup JS
+$(".reply-popup").on('click', function () {
+    $(".reply-box").toggle();
+    $(".add-com").toggle();
+
+});
+
+fetch("https://coronavirusapi-france.now.sh/FranceLiveGlobalData")
+    .then((response) => { 
+        return response.json()
+    })
+    .then((datas) => {
+            console.log(datas)
+    })

@@ -1,8 +1,9 @@
 <nav class="navbar pt-2 pb-2 navbar-expand-sm navbar-dark " style="background-color: #112437;">
 
 
-	<div class="container">
-		<a class="navbar-brand" href="{{path("app_home")}}">
+	<div class="container-fluid">
+
+		<a class=" ml-2 navbar-brand" href="{{path("app_home")}}">
 			<i class="pr-2 fas fa-home"></i>Mon portefolio</a>
 
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,11 +11,12 @@
 		</button>
 
 		<div class="collapse navbar-collapse" id="navbarsExample03">
-			<ul class="navbar-nav ml-auto topnav">
+			<ul class="nav navbar-nav ml-auto  ">
+
 
 				<li class="nav-item">
 					<a class="nav-link " href="{{path("app_posts")}}">
-						Services</a>
+						Réalisation</a>
 				</li>
 
 				<li class="nav-item">
@@ -30,7 +32,7 @@
 				</li>
 
 				{% if app.user %}
-					<li class="nav-item">
+					<li class="nav navbar-nav">
 						<a class="nav-link" href="{{path("app_posts_create")}}">Nouveau</a>
 
 					</li>
@@ -42,21 +44,29 @@
 					<li class="nav-item">
 						<a class="nav-link " href="{{path('app_logout')}}">Logout</a>
 					</li>
-				{% else %}
-					<li class="nav-item">
-						<a class="nav-link ml-5 btn btn-secondary text-white radius-0" href="{{path('app_register')}}">Sign In</a>
+				</ul>
+			{% else %}
+				<div class="row pl-5 ml-5 mr-2 pt-2 ">
 
+					<li>
+						<a href="{{path('app_register')}}">
+
+							<i class="fas fa-user"></i>
+							Sign Up</a>
 					</li>
+					<li class="ml-3">
 
-					<li class="nav-item">
-						<a class="nav-link btn btn-danger text-white" href="{{path('app_login')}}">Log in</a>
+						<a href="{{path('app_login')}}">
 
+							<i class="fas fa-sign-in-alt"></i>
+							Login</a>
 					</li>
+				</div>
 
-				{% endif %}
+
+			{% endif %}
 
 
-			</ul>
 		</div>
 
 	</div>

@@ -3,7 +3,7 @@
 {% block title post.title %}
 
 {% block header %}
-<h1 class="pt-5 pb-5 text-center">{{post.title}}</h1>
+	<h1 class="pt-5 pb-5 text-center">{{post.title}}</h1>
 
 {% endblock %}
 {% block body %}
@@ -24,60 +24,87 @@
 						{{(post.description|raw)}}
 
 					</p>
+					{% if is_granted('ROLE_ADMIN') %}
+						<div class="pt-3">
+							<a href="{{path('app_posts_edit', {id: post.id})}}" class=" btn btn-light ">Edit</a>
 
-					<div class="pt-3">
-						<a href="{{path('app_posts_edit', {id: post.id})}}" class=" btn btn-light ">Edit</a>
+							<a href="#" onclick="event.preventDefault(); confirm('Are you sure ?')&& document.getElementById('post-delete').submit();" class=" btn btn-light ">Delete</a>
 
-						<a href="#" onclick="event.preventDefault(); confirm('Are you sure ?')&& document.getElementById('post-delete').submit();" class=" btn btn-light ">Delete</a>
-
-						<form id="post-delete" action="{{path('app_posts_delete', {id: post.id})}}" method="post" style="display:none;">
-							<input type="hidden" name="csrf_token" value="{{csrf_token('post_deletion_'~ post.id)}}">
-
-							<input type="hidden" name="_method" value="DELETE">
-						</form>
-					</div>
+							<form id="post-delete" action="{{path('app_posts_delete', {id: post.id})}}" method="post" style="display:none;">
+								<input type="hidden" name="csrf_token" value="{{csrf_token('post_deletion_'~ post.id)}}">
+								<input type="hidden" name="_method" value="DELETE">
+							</form>
+						</div>
+					{% endif %}
 				</div>
 
 			</article>
 
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-6 ">
-			{% if app.user %}
-				<h1>Commenter</h1>
-				{{ include ("posts/_form.html.twig")}}
-			{% else %}
-				<p>
-					<a class="btn btn-success" href="{{ path('app_login')}}">
-						<i class="fa fa-sign-in" aria-hidden="true"></i>
-						Se connecter pour commenter
-					</a>
-					{{ 'post.to_publish_a_comment'|trans }}
-				</p>
-			{% endif %}
 
-		</div>
-	</div>
+	<div class="mt-3  container">
+		<div class="row">
+			<div class="col-12">
+				<div class="comments">
+					<div class="comments-details">
+						<span class="total-comments comments-sort">{{post.comments|length}}
+							Commentaires</span>
+					</div>
+					<div class="comment-box add-comment">
+						{% if app.user %}
+							<div class="reply-box">
+								<span class="commenter-pic">
+									<img src="{{asset('assets/img/user-1.png')}}" class="img-fluid">
 
-		{% for comment in post.comments %}
-			<div class="row post-comment">
-				<h4 class="col-sm-3">
-					{{ comment.users.name}}
-					<p>Posté le
-						{{ comment.publishedAt|format_datetime('medium', 'none', locale='fr') }}
-					</p>
+								</span>
+								<span class="commenter-name">
+									{{ include ("posts/_form.html.twig",{ submitButtonText:'Commenter' })}}
 
-				</h4>
+									<button type="cancel" class="btn btn-default reply-popup">Annuler</button>
+								</span>
+							</div>
+							<span class="add-com">
+								<button type="comment" class="btn  btn-default reply-popup">Ajouter un commentaire</button>
+							</span>
+						{% else %}
+							<p class="mt-5 border">
+								<a href="{{ path('app_login')}}">
+									<i class="fas fa-sign-in-alt"></i>
+									Connectez-vous
+								</a>
+								pour commenter
+							</p>
+						{% endif %}
 
-				<div class="col-sm-9">
-					{{ comment.content }}
+					</div>
+					{% for comment in post.comments %}
+						<div class="pl-5 ml-5 comment-box">
+							<span class="commenter-pic">
+								<img src="{{asset('assets/img/user-1.png')}}" class="img-fluid">
+
+							</span>
+							<span class="commenter-name">
+								<a href="#">par
+									{{ comment.users.name}}</a>
+
+								<span class="comment-time">{{ comment.publishedAt|format_datetime('medium', 'none', locale='fr') }}</span>
+
+							</span>
+							<p class="pl-3 comment-txt more">
+								{{ comment.content }}
+							</p>
+
+						</div>
+					{% else %}
+						<div class="post-comment">
+							<p>pas de commentaires</p>
+						</div>
+					{% endfor %}
+
+
 				</div>
 			</div>
-	{% else %}
-		<div class="post-comment">
-			<p>pas de commentaires</p>
 		</div>
-		{% endfor %}
-
+	</div>
 {% endblock %}
