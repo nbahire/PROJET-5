@@ -5,10 +5,12 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\PostsRepository;
 use App\Entity\traits\Timestampable;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -16,6 +18,16 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=PostsRepository::class)
  * @ORM\Table(name="posts")
+ * @ApiResource(
+ *      collectionOperations={},
+ *      itemOperations={
+ *          "get"={
+ *              "controller"=App\Controller\Api\EmptyController::class,
+ *         "read"=false,
+ *          "deserialize"=false
+ *             }
+ *      }
+ * )
  * @Vich\Uploadable
  * @ORM\HasLifecycleCallbacks
  */
@@ -32,6 +44,7 @@ class Posts
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @groups({"read:full:comments"})
      */
     private $title;
 

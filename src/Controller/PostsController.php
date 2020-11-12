@@ -44,7 +44,6 @@ class PostsController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $comment->setUsers($this->getUser());
-            $comment->setModerate();
             $post->addComment($comment);
             $em->persist($comment);
             $em->flush();

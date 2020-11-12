@@ -12,6 +12,7 @@ import './styles/app.scss';
 import $, { data } from 'jquery';
 import 'bootstrap';
 import 'popper.js';
+import './js/Comment.jsx'
 
 $('.custom-file-input').on('change', function (e) {
     let inputFile = e.currentTarget;
@@ -25,10 +26,4 @@ $(".reply-popup").on('click', function () {
 
 });
 
-fetch("https://coronavirusapi-france.now.sh/FranceLiveGlobalData")
-    .then((response) => { 
-        return response.json()
-    })
-    .then((datas) => {
-            console.log(datas)
-    })
+

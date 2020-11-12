@@ -37,74 +37,82 @@
 						</div>
 					{% endif %}
 				</div>
+	<post-comments data-post="{{post.id}}" data-user="{{app.user ? app.user.id :0}}"></post-comments>
+
+
+
+				<button class="next">Charger plus de commentaires</button>
+
 
 			</article>
 
 		</div>
 	</div>
 
-	<div class="mt-3  container">
-		<div class="row">
-			<div class="col-12">
-				<div class="comments">
-					<div class="comments-details">
-						<span class="total-comments comments-sort">{{post.comments|length}}
-							Commentaires</span>
-					</div>
-					<div class="comment-box add-comment">
-						{% if app.user %}
-							<div class="reply-box">
+	<!--<div class="mt-3  container">
+			<div class="row">
+				<div class="col-12">
+					<div class="comments">
+						<div class="comments-details">
+							<span class="total-comments comments-sort">{{post.comments|length}}
+								Commentaires</span>
+						</div>
+						<div class="comment-box add-comment">
+							{% if app.user %}
+								<div class="reply-box">
+									<span class="commenter-pic">
+										<img src="{{asset('assets/img/user-1.png')}}" class="img-fluid">
+	
+									</span>
+									<span class="commenter-name">
+										{{ include ("posts/_form.html.twig",{ submitButtonText:'Commenter' })}}
+	
+										<button type="cancel" class="btn btn-default reply-popup">Annuler</button>
+									</span>
+								</div>
+								<span class="add-com">
+									<button type="comment" class="btn  btn-default reply-popup">Ajouter un commentaire</button>
+								</span>
+							{% else %}
+								<p class="mt-5 border">
+									<a href="{{ path('app_login')}}">
+										<i class="fas fa-sign-in-alt"></i>
+										Connectez-vous
+									</a>
+									pour commenter
+								</p>
+							{% endif %}
+	
+						</div>
+						{% for comment in post.comments %}
+							<div class="pl-5 ml-5 comment-box">
 								<span class="commenter-pic">
 									<img src="{{asset('assets/img/user-1.png')}}" class="img-fluid">
-
+	
 								</span>
 								<span class="commenter-name">
-									{{ include ("posts/_form.html.twig",{ submitButtonText:'Commenter' })}}
-
-									<button type="cancel" class="btn btn-default reply-popup">Annuler</button>
+									<a href="#">par
+										{{ comment.users.name}}</a>
+	
+									<span class="comment-time">{{ comment.publishedAt|format_datetime('medium', 'none', locale='fr') }}</span>
+	
 								</span>
+								<p class="pl-3 comment-txt more">
+									{{ comment.content }}
+								</p>
+	
 							</div>
-							<span class="add-com">
-								<button type="comment" class="btn  btn-default reply-popup">Ajouter un commentaire</button>
-							</span>
 						{% else %}
-							<p class="mt-5 border">
-								<a href="{{ path('app_login')}}">
-									<i class="fas fa-sign-in-alt"></i>
-									Connectez-vous
-								</a>
-								pour commenter
-							</p>
-						{% endif %}
-
+							<div class="post-comment">
+								<p>pas de commentaires</p>
+							</div>
+						{% endfor %}
+	
+	
 					</div>
-					{% for comment in post.comments %}
-						<div class="pl-5 ml-5 comment-box">
-							<span class="commenter-pic">
-								<img src="{{asset('assets/img/user-1.png')}}" class="img-fluid">
-
-							</span>
-							<span class="commenter-name">
-								<a href="#">par
-									{{ comment.users.name}}</a>
-
-								<span class="comment-time">{{ comment.publishedAt|format_datetime('medium', 'none', locale='fr') }}</span>
-
-							</span>
-							<p class="pl-3 comment-txt more">
-								{{ comment.content }}
-							</p>
-
-						</div>
-					{% else %}
-						<div class="post-comment">
-							<p>pas de commentaires</p>
-						</div>
-					{% endfor %}
-
-
 				</div>
 			</div>
-		</div>
-	</div>
+		</div> -->
+
+
 {% endblock %}

@@ -5,10 +5,13 @@
 @import '~@fortawesome/fontawesome-free/css/fontawesome';
 @import '~@fortawesome/fontawesome-free/css/all.css';
 
-
-html body{
+html{
+    scroll-behavior: smooth;
+}
+ body{
     font-family: 'Montserrat', sans-serif;
 }
+    
 .alert{
     padding: 10px;
     margin: 0;
@@ -140,6 +143,11 @@ html body{
 .reply-box {
     display: none;
 }
+
+.navbar-shrink {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
 
 /*======Responsive CSS=======*/
 @media (max-width: 767px){

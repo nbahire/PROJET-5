@@ -1,4 +1,5 @@
-<nav class="navbar pt-2 pb-2 navbar-expand-sm navbar-dark " style="background-color: #112437;">
+<nav id="mainNav" class="navbar pt-2 pb-2 fixed-top navbar-expand-sm navbar-dark " style="background-color: #112437;">
+
 
 
 	<div class="container-fluid">
@@ -10,41 +11,45 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
-		<div class="collapse navbar-collapse" id="navbarsExample03">
-			<ul class="nav navbar-nav ml-auto  ">
+		<div class="collapse navbar-collapse" id="navbars id">
+			<ul class="ml-2 nav navbar-nav ml-auto  ">
 
 
 				<li class="nav-item">
-					<a class="nav-link " href="{{path("app_posts")}}">
-						Réalisation</a>
+					<a class="nav-link" href="{{path("app_about")}}">
+						A propos
+					</a>
 				</li>
 
 				<li class="nav-item">
-					<a class="nav-link" href="{{path("app_posts")}}">
-						A propos</a>
+					<a class="nav-link " href="{{path("app_contact")}}">
+						Contact
+					</a>
 				</li>
-
 
 				<li class="nav-item">
 					<a class="nav-link" href="{{path("app_posts")}}">
 						<i class="fas fa-blog "></i>
-						blog</a>
+						blog
+					</a>
 				</li>
 
 				{% if app.user %}
-					<li class="nav navbar-nav">
-						<a class="nav-link" href="{{path("app_posts_create")}}">Nouveau</a>
 
-					</li>
+				<li class="nav-item">
+					<a class="nav-link " href="{{path('app_users')}}">Account</a>
+				</li>
 
-					<li class="nav-item">
-						<a class="nav-link " href="{{path('app_users')}}">Account</a>
-					</li>
+				<li class="ml-5 mt-2">
+					<a href="{{path('app_logout')}}">
 
-					<li class="nav-item">
-						<a class="nav-link " href="{{path('app_logout')}}">Logout</a>
-					</li>
-				</ul>
+						<i class="fas fa-sign-out-alt"></i>
+						Logout
+					</a>
+
+				</li>
+
+			</ul>
 			{% else %}
 				<div class="row pl-5 ml-5 mr-2 pt-2 ">
 
@@ -55,9 +60,7 @@
 							Sign Up</a>
 					</li>
 					<li class="ml-3">
-
 						<a href="{{path('app_login')}}">
-
 							<i class="fas fa-sign-in-alt"></i>
 							Login</a>
 					</li>
