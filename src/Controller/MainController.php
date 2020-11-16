@@ -2,18 +2,23 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\PostsRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MainController extends AbstractController
 {
     /**
      * @Route("/", name="app_home")
      */
-    public function index()
+
+    public function index(Request $request, PostsRepository $postsRepository)
     {
-        return $this->render('main/index.html.twig');
+        $posts = $postsRepository->findBy([], ['createdAt' => 'DESC']);
+        return $this->render('main/index.html.twig', compact('posts'));
     }
+
     /**
      * @Route("/contact", name="app_contact")
      */

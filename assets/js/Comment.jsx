@@ -4,16 +4,18 @@ import { usePaginatedFetch } from './hooks'
 import imageUser from './img/user-1.png'
 
 
-function Comments() {
-    const { items: comments, load, loading, count, hasMore } = usePaginatedFetch('/api/comments')
+const dateFormat = {
+    dateStyle: 'medium',
+    timeStyle: 'short',
+}
+
+function Comments({ post }) {
+    const { items: comments, load, loading, count, hasMore } = usePaginatedFetch('/api/comments?posts=' + post)
     useEffect(() => { load() }, [])
     return <div >
         <Title count={count} />
-        <div className="pl-5 comment-content comment-box">
-            {loading && 'Chargement...'}
-            {comments.map(c => <Comment key={c.id} comment={c} />)}
-        </div>
-        {hasMore && < button disabled={loading} className="btn btn-primary " onClick={load}>Charger plus de commentaires</button>}
+        {comments.map(c => <Comment key={c.id} comment={c} />)}
+        {hasMore && < button disabled={loading} className="btn btn-default " onClick={load}>Charger plus de commentaires</button>}
     </div>
 }
 
@@ -24,24 +26,43 @@ function Title({ count }) {
         </span>
     </div>
 }
-function Comment({ comment }) {
-    return <div> 
-        <span className="commenter-pic">
-            <img src='/build/images/user-1.b388bc8a.png' alt="image user"/>
-        </span>
-        <span className="commenter-name">
-        <a className="comment-user" href="#">{comment.users.name}</a>
-        <span className="comment-time">{comment.publishedAt}</span>
-    </span>
-<p className="comment-txt">{comment.content}</p>
-    </div>
-}
-class CommentsElement extends HTMLElement {
 
-    connectedCallback() {
-        render(<Comments />, this)
+const Comment = React.memo(({ comment }) => {
+    const date = new Date(comment.publishedAt)
+    return <div className="pl-5 ml-5 comment-box">
+        <p className="commenter-name">
+            Par <a className="comment-user" >{comment.users.name}</a> le<span className="comment-time">{date.toLocaleString(undefined, dateFormat)}</span>
+        </p>
+        <p className="comment-txt">{comment.content}</p>
+
+    </div>
+})
+class CommentsElement extends HTMLElement {
+    constructor() {
+        super()
+        this.observer = null
     }
+    connectedCallback() {
+        const post = parseInt(this.dataset.post, 10)
+        if (this.observer === null) {
+            this.observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && entry.target === this) {
+                        observer.disconnect()
+                        render(<Comments post={post} />, this)
+                    }
+                })
+            })
+
+        }
+        this.observer.observe(this)
+    }
+
     discnnectedCollback() {
+        if (this.observer) {
+            this.observer.disconnect()
+
+        }
         unmountComponentAtNode(this)
     }
 }

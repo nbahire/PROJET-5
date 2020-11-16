@@ -11,7 +11,9 @@ html{
  body{
     font-family: 'Montserrat', sans-serif;
 }
-    
+section{
+    @extend .mt-5, .mb-5;
+}
 .alert{
     padding: 10px;
     margin: 0;
@@ -39,15 +41,16 @@ html{
         width: 50%;
     }
 }
-.site-banner {
-    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 100px));
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 100px));
 
+.navbar{
+    transition: top 0.3s;
+    & img{
+        height: 60px;
+        border: 2px solid red;
+    }
 }
-.site-cta{
-    -webkit-clip-path: polygon(0 0, 100% 50px, 100% 100%, 0 100%);
-    clip-path: polygon(0 0, 100% 50px, 100% 100%, 0 100%);
-
+.btn{
+    @extend .btn-success
 }
 .comments-details button.btn.dropdown-toggle,
 .comments-details .total-comments {
@@ -89,8 +92,8 @@ html{
 }
 .commenter-name {
     width: 100%;
-    padding-left: 75px;
     position: absolute;
+    padding-top: 20px;
     top: 20px;
     left: 0px;
 }

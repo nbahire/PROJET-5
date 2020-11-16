@@ -1,28 +1,25 @@
 {% extends 'layouts/base.html.twig' %}
 
-{% block title %}Hello MainController!
-{% endblock %}
+{% block title 'Alain N Bahire | Développeur web ' %}
 {% block header %}
 
-	<div class="row d-flex justify-content-center mt-5 mb-5 mr-0 pb-5 site-banner__inner ">
+	<div class="row d-flex justify-content-around mt-5 mb-5 pl-2 pb-5 ">
+
+		<div class="mt-5 pt-5 mb-5 ">
 
 
-		<div class="col-5 ml-5 mt-5 pt-5 pl-5 mb-5 site-banner__content">
-
-
-			<h1 class="site-banner__title">
+			<h2 class="site-banner__title">
 				Hey, Je suis Alain.
-			</h1>
-
-
-			<h2 class="h4 pt-3 text-muted site-banner__subtitle">
-
-				developpeur web de Toulouse en France.
 			</h2>
 
 
+			<p class="h4 pt-3 text-muted ">
+				développeur  web de Toulouse en France.
+			</p>
+
+
 			<div class=" pt-3 site-banner__btn">
-				<a class="btn btn-dark btn-secondary btn-lg " href="#project">
+				<a class="btn btn-lg " href="#project">
 					Mes projets
 				</a>
 			</div>
@@ -30,7 +27,7 @@
 		</div>
 
 
-		<figure class=" avatar-pic col-4  overlap-img">
+		<figure class=" avatar-pic col-6  overlap-img">
 
 
 			<picture>
@@ -45,7 +42,7 @@
 {% block body %}
 
 	<!-- Portfolio Section-->
-	<section id="project" class="mb-5 mt-5 pb-5 pt-5 page-section portfolio" id="portfolio">
+	<section id="project" class="mb-5 mt-5 pb-5 pt-5 page-section border-bottom portfolio" id="portfolio">
 
 		<div class="container">
 
@@ -84,5 +81,43 @@
 			</div>
 		</div>
 	</section>
+	<section>
+			<h2 class="mb-3 text-center text-muted">Dérnier billet de blog</h2>
+		<div class="mb-5">
 
+			<div class="mt-5 pb-5 d-flex border rounded shadow ">
+
+
+				<article class="col-10 ml-3 mt-5">
+					<h2 class="">
+
+						<a class="text-muted text-decoration-none" href="{{path('app_posts_show', {id: posts|last.id})}}">
+
+							{{posts|last.title}}
+
+						</a>
+					</h2>
+					<time class="h4 time text-center text-success">
+						{{ posts|last.createdAt| format_datetime('medium', 'none', locale='fr')}}
+					</time>
+					<div class="description  mt-3">
+						<p>
+							{{((posts|last.description |u.truncate(300, ' ...', false))|raw)|nl2br}}
+
+
+						</p>
+					</div>
+					<a href=" {{path('app_posts_show', {id: posts|last.id} )}}">
+
+						<button type="button" class="btn btn-success">lire la suite</button>
+					</a>
+
+
+				</article>
+			</div>
+
+		</div>
+
+
+	</section>
 {% endblock %}
