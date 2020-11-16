@@ -1,3 +1,4 @@
+{{ include('layouts/partials/_flash_messages.html.twig')}}
 <nav class="navbar navbar-expand-sm fixed-top navbar-dark  " style="background-color: #112437;">
 
 	<div class="container-fluid">
@@ -41,7 +42,7 @@
 					</li>
 
 					<li class="ml-5 mt-2">
-						<a href="{{path('app_logout')}}">
+						<a class="text-danger" href="{{path('app_logout')}}">
 
 							<i class="fas fa-sign-out-alt"></i>
 							Logout
