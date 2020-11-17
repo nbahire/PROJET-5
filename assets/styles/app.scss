@@ -49,9 +49,6 @@ section{
         border: 2px solid red;
     }
 }
-.btn {
-@extend .btn-success;
-}
 
 .comments-details button.btn.dropdown-toggle,
 .comments-details .total-comments {
