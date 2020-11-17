@@ -82,7 +82,7 @@ class PostsController extends AbstractController
         
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
-            $this->addFlash('success', 'post successfully updated!');
+            $this->addFlash('success', 'Article édité avec succes!');
 
             return $this->redirectToRoute('app_posts_show', ['id' => $post->getId()]);
         }
@@ -96,7 +96,7 @@ class PostsController extends AbstractController
         if ($this->isCsrfTokenValid('post_deletion_' . $post->getId(), $request->request->get('csrf_token'))) {
             $em->remove($post);
             $em->flush();
-            $this->addFlash('info', 'post successfully deleted!');
+            $this->addFlash('info', 'Article supprimé avec succes !');
         }
         return $this->redirectToRoute('app_home');
     }
