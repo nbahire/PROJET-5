@@ -46,7 +46,18 @@
 						<div class="reply-box">
 							<span class="commenter-name">
 								<h3>Laisser un commentaire</h3>
-								{{ include ("posts/_form.html.twig",{ submitButtonText:'Commenter' })}}
+								{{form_start(form)}}
+
+								<div class="mt-4">
+
+									{{form_row(form.content)}}
+
+								</div>
+
+								<button type="submit" class="btn ">Commenter</button>
+
+								{{form_end(form)}}
+
 
 								<button type="cancel" class="btn btn-default reply-popup">Annuler</button>
 							</span>

@@ -29,46 +29,56 @@
 					</a>
 				</li>
 
-				{% if app.user %}
+				{% if is_granted('ROLE_ADMIN') %}
 
-					<li class="nav-item">
-						<a class="nav-link " href="{{path('app_users')}}">Account</a>
-					</li>
+					<li class="nav-item"></li>
 
-					<li class="ml-5 mt-2">
-						<a class="text-danger" href="{{path('app_logout')}}">
+					<a class="nav-link " href="{{path('app_admin_')}}">Admin</a>
+				</li>
+				<li class="ml-5 mt-2">
+					<a class="text-danger" href="{{path('app_logout')}}">
 
-							<i class="fas fa-sign-out-alt"></i>
-							Logout
-						</a>
+						<i class="fas fa-sign-out-alt"></i>
+						Logout
+					</a>
 
-					</li>
-
-				</ul>
-			{% else %}
-				<div class="row pl-5 ml-5 mr-2 pt-2 ">
-
-					<li>
-						<a class="text-success" href="{{path('app_register')}}">
-
-							<i class="fas fa-user"></i>
-							Sign Up
-						</a>
-					</li>
-					<li class="ml-3">
-						<a class="text-success" href="{{path('app_login')}}">
-
-							<i class="fas fa-sign-in-alt"></i>
-							Login
-						</a>
-					</li>
-				</div>
-
-			{% endif %}
+				</li>
 
 
-		</div>
+			{%  elseif app.user %}
+
+				<li class="ml-5 mt-2">
+					<a class="text-danger" href="{{path('app_logout')}}">
+
+						<i class="fas fa-sign-out-alt"></i>
+						Logout
+					</a>
+
+				</li>
+
+			</ul>
+		{% else %}
+			<div class="row pl-5 ml-5 mr-2 pt-2 ">
+
+				<li>
+					<a class="text-success" href="{{path('app_register')}}">
+
+						<i class="fas fa-user"></i>
+						Sign Up
+					</a>
+				</li>
+				<li class="ml-3">
+					<a class="text-success" href="{{path('app_login')}}">
+
+						<i class="fas fa-sign-in-alt"></i>
+						Login
+					</a>
+				</li>
+			</div>
+
+		{% endif %}
+
 
 	</div>
 
-</nav>
+</div></nav>

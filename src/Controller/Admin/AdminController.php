@@ -61,11 +61,13 @@ class AdminController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('MyPortefolio')
+            ->setTranslationDomain('')
+            ->setTitle('Alain N Bahire')
             ->setFaviconPath('assets/img/favicon-a.ico')
             ->setTextDirection('ltr')
         ;
     }
+    
     public function configureAssets(): Assets
     {
        return Assets::new()

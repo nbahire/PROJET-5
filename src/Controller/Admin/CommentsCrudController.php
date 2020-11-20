@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use Egulias\EmailValidator\Exception\CRLFX2;
 
 class CommentsCrudController extends AbstractCrudController
 {
@@ -20,13 +21,13 @@ class CommentsCrudController extends AbstractCrudController
 
 public function configureActions(Actions $actions): Actions
 {
-    $removeComment = Action::new('removeComment','Supprimer', 'fa fa-trash')
-        ->linkToCrudAction(Action::DELETE)
-        ->addCssClass('btn btn-danger')
-    ;
     return $actions
-        ->disable(Action::EDIT)
-        ->add(Action::DELETE, $removeComment)
+        ->disable(Action::EDIT, Action::NEW)
+        ->update(Crud::PAGE_INDEX, Action::DELETE, function (Action $action) {
+            return $action->setIcon('fa fa-trash')
+                ->setLabel('Supprimer')
+                ->setCssClass('btn btn-danger');
+        })
     ;
 
 }

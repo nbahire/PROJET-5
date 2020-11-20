@@ -15,15 +15,18 @@ class CommentsFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('content', TextareaType::class,['constraints' => [
+            ->add('content', TextareaType::class,[
+                'label' => false,
+                'required'   => true,
+                'constraints' => [
                         new NotBlank([
                             'message' => 'Veuillez entrer votre commentaire',
                         ]),
                         new Length([
-                            'min' => 6,
+                            'min' => 4,
                             'minMessage' => 'Votre commentaire est trop court',
                         ]),
-                    ]], ['label' => false])
+                    ]])
         ;
     }
 
