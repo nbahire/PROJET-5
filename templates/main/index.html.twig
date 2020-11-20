@@ -3,14 +3,14 @@
 {% block title 'Alain N Bahire | Développeur web ' %}
 {% block header %}
 
-	<div class="row d-flex justify-content-around mt-5 mb-5 pl-2 pb-5 ">
+	<div class="row d-flex justify-content-around my-5 pl-2 pb-5 content-row">
 
-		<div class="mt-5 pt-5 mb-5 ">
+		<div class="my-5 pt-5 ">
 
 
-			<h2 class="site-banner__title">
+			<h1 class="">
 				Hey, Je suis Alain.
-			</h2>
+			</h1>
 
 
 			<p class="h4 pt-3 text-muted ">
@@ -43,43 +43,145 @@
 {% block body %}
 
 	<!-- Portfolio Section-->
-	<section id="project" class="mb-5 mt-5 pb-5 pt-5 page-section border-bottom portfolio" id="portfolio">
+	<section id="project" class=" py-5 ">
+		<div class="mb-5">
+			<h2 class="my-3 text-center text-muted">A propos de moi
 
-		<div class="container">
+			</h2>
 
-			<h2 class="h2 mb-5 mt-5 text-center text-uppercase text-secondary ">Réalisations</h2>
+			<p class="mb-5 text-center ">Découvrez mes competences avec un aperçu détaillé de chaque, ainsi que mes differentes réalisations</p>
+		</div>
 
-			<div class="pt-5 row">
 
-				<div class="col-md-6 col-lg-4 mb-5">
-					<a href="https://webagency-projets.info/">
-						<img class="img-fluid border rounded shadow" src="https://screenshot.ionos.com/storage/1f66f086d5d4716c201f6d7662455fbeb284dfc4b6b7038a7c0edbe183e6fc45?timeout=15&oldScreenshot=false&uuid=a39ab94bb04ded56ffde47&cd=73490233" alt="image site "/>
-					</a>
+		<div class="modal-content  border-0">
+			<div
+				class="modal-c-tabs">
 
-				</div>
 
-				<div class="col-md-6 col-lg-4 mb-5">
-					<a href="http://ireki-t.webagency-projets.info/">
-						<img class="img-fluid border rounded shadow" src="https://screenshot.ionos.com/storage/15f1b83234c25d620796a1d822b4ef5e36ee00005c53679ef519808da565f012?timeout=15&oldScreenshot=false&uuid=859af9ab34647c068b9769" alt="image site "/>
-					</a>
+				<!-- Nav tabs -->
+				<ul class=" nav nav-tabs md-tabs d-flex justify-content-center border-0 " role="tablist">
 
-				</div>
 
-				<div class="col-md-6 col-lg-4 mb-5">
-					<a href="https://t-velos.webagency-projets.info/">
+					<li class="nav-item ">
+						<a class="nav-link active list-group-item list-group-item-action list-group-item-info rounded-top shadow" data-toggle="tab" href="#panel7" role="tab">
+							Services</a>
+					</li>
+					<li class="nav-item ">
+						<a class="nav-link list-group-item list-group-item-action list-group-item-info rounded-top shadow" data-toggle="tab" href="#panel8" role="tab">
+							Réalisations</a>
+					</li>
+				</ul>
 
-						<img class="img-fluid border rounded shadow" src="https://screenshot.ionos.com/storage/ca8c296038dad0cf525063f694c087a1f87e55d99b5ab43e77425c1ffdfe6f78?timeout=15&oldScreenshot=false&uuid=a6adaa6ef42ae0549a3665" alt="image site "/>
-					</a>
+				<!-- Tab panels -->
+				<div
+					class="p-3 tab-content border rounded shadow">
+					<!--Panel 7-->
+					<div
+						class="tab-pane fade in show active" id="panel7" role="tabpanel">
 
-				</div>
+						<!--Body-->
+						<h2 class="h2 mb-5 mt-5 text-center text-uppercase text-secondary ">Mes sérvices</h2>
 
-				<div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
-					<a href="https://alaska.webagency-projets.info/">
-						<img class="img-fluid border rounded shadow" src="https://screenshot.ionos.com/storage/275c7edc6e5f012734c227a76a05d80e938eded56badd5d5e25f59cc37e474f7?timeout=15&oldScreenshot=false&uuid=70ec030dc1f1ba7db62cdf" alt="image site "/>
-					</a>
+
+						<div class="py-5 d-flex justify-content-between content-row">
+
+							<div class=" col-3">
+								<img class="text-info" src="{{asset('assets/img/laptop-computer-code-svg.svg')}}" alt="">
+
+							</div>
+							<div class=" row col-9">
+
+								<div class=" my-4">
+									<h3 class="h4 mb-2">
+
+										HTML / CSS
+									</h3>
+									<p class="text-muted">
+
+										Créer une base solide pour un site Web signifie avoir la bonne architecture HTML et CSS.
+																																																																																																																																																																																													                        Si vous avez un design, je peux le réaliser.
+									</p>
+
+								</div>
+
+								<div class="spacing-tiny-top my-4">
+
+									<h3 class="h4 mb-2">
+
+										WordPress
+									</h3>
+									<p class="text-muted">
+
+										Avec wordpress, vous pouvez facilement mettre à jour chaque élément de contenu, activer ou désactiver
+																																																																																																																																																																																													                        des sections et bien plus encore.</p>
+
+								</div>
+
+								<div class="spacing-tiny-top my-4">
+
+									<h3 class="h4 mb-2">
+
+										Symfony
+									</h3>
+									<p class="text-muted">
+
+										Grâce à ce framework je peux créer des sites web complet et ce tres rapidement</p>
+
+								</div>
+
+							</div>
+						</div>
+
+
+					</div>
+					<!--/.Panel 7-->
+
+					<!--Panel 8-->
+					<div
+						class="tab-pane fade" id="panel8" role="tabpanel">
+
+						<!--Body-->
+
+						<h2 class="h2 my-5 text-center text-uppercase text-secondary ">Réalisations</h2>
+
+						<div class="py-5 row">
+
+							<div class="col-md-6 col-lg-4 mb-5">
+								<a href="https://webagency-projets.info/">
+									<img class="img-fluid border rounded shadow" src="https://screenshot.ionos.com/storage/1f66f086d5d4716c201f6d7662455fbeb284dfc4b6b7038a7c0edbe183e6fc45?timeout=15&oldScreenshot=false&uuid=a39ab94bb04ded56ffde47&cd=73490233" alt="image site "/>
+								</a>
+
+							</div>
+
+							<div class="col-md-6 col-lg-4 mb-5">
+								<a href="http://ireki-t.webagency-projets.info/">
+									<img class="img-fluid border rounded shadow" src="https://screenshot.ionos.com/storage/15f1b83234c25d620796a1d822b4ef5e36ee00005c53679ef519808da565f012?timeout=15&oldScreenshot=false&uuid=859af9ab34647c068b9769" alt="image site "/>
+								</a>
+
+							</div>
+
+							<div class="col-md-6 col-lg-4 mb-5">
+								<a href="https://t-velos.webagency-projets.info/">
+
+									<img class="img-fluid border rounded shadow" src="https://screenshot.ionos.com/storage/ca8c296038dad0cf525063f694c087a1f87e55d99b5ab43e77425c1ffdfe6f78?timeout=15&oldScreenshot=false&uuid=a6adaa6ef42ae0549a3665" alt="image site "/>
+								</a>
+
+							</div>
+
+							<div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
+								<a href="https://alaska.webagency-projets.info/">
+									<img class="img-fluid border rounded shadow" src="https://screenshot.ionos.com/storage/275c7edc6e5f012734c227a76a05d80e938eded56badd5d5e25f59cc37e474f7?timeout=15&oldScreenshot=false&uuid=70ec030dc1f1ba7db62cdf" alt="image site "/>
+								</a>
+
+							</div>
+						</div>
+					</div>
+					<!--/.Panel 8-->
+
 
 				</div>
 			</div>
+
 		</div>
 	</section>
 	<section>

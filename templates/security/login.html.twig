@@ -5,12 +5,8 @@
 {% endblock %}
 
 {% block header %}
-	<div class="mt-5 mb-5 text-center">
-		<h1 class="mb-3">Contact</h1>
-		<h2 class="h5 mb-2 text-center  text-muted">
-			Si vous souhaitez discuter d'un projet,
-			veuillez remplir le formulaire ci-dessous et je vous répondrai sous 1 à 2 jours.
-		</h2>
+	<div class="text-center">
+		<h1 class="mt-3">Connexion</h1>
 
 
 	</div>
@@ -55,15 +51,17 @@
 
 			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-<button class="btn btn-lg btn-success btn-block" type="submit">
+			<button class="btn btn-lg btn-success btn-block" type="submit">
 
 				Se connecter
 			</button>
 
-			<p class="mt-5 mb-3 text-center text-muted">Pas encore de compte ?
-				<a href="{{path('app_register')}}">Créer un compte</a>
-			</p>
 
 		</form>
+	<p class="mt-5 mb-3 text-center text-muted">Pas encore de compte ?
+		<a href="{{path('app_register')}}">Créer un compte</a>
+	</p>
 	</div>
+
+
 {% endblock %}

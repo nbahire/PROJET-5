@@ -41,6 +41,7 @@ class PostsController extends AbstractController
     public function show(Request $request, posts $post, EntityManagerInterface $em): Response
     {
         $comment = new Comments;
+        $request->getSession()->set('referer', $request->getUri());
         $form = $this->createForm(CommentsFormType::class, $comment);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

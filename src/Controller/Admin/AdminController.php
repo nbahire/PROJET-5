@@ -8,6 +8,7 @@ use App\Entity\Comments;
 use App\Repository\PostsRepository;
 use App\Repository\UsersRepository;
 use App\Repository\CommentsRepository;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -60,7 +61,15 @@ class AdminController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('MyPortefolio');
+            ->setTitle('MyPortefolio')
+            ->setFaviconPath('assets/img/favicon-a.ico')
+            ->setTextDirection('ltr')
+        ;
+    }
+    public function configureAssets(): Assets
+    {
+       return Assets::new()
+            ->addCssFile('bundles/easyadmin/css/style.css');
     }
 
     public function configureMenuItems(): iterable

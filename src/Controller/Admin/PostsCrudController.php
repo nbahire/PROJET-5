@@ -22,7 +22,12 @@ class PostsCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig');
+            ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig')
+            ->overrideTemplate('crud/index','bundles/EasyAdminBundle/custom/crud_index_custom.html.twig')
+            ->overrideTemplate('crud/edit', 'bundles/EasyAdminBundle/custom/crud_edit_custom.html.twig')
+            ->overrideTemplate('crud/detail','bundles/EasyAdminBundle/custom/crud_detail_custom.html.twig')
+            ->overrideTemplate('crud/new', 'bundles/EasyAdminBundle/custom/crud_new_custom.html.twig')
+        ;
     }
 
     public function configureFields(string $pageName): iterable
@@ -37,11 +42,11 @@ class PostsCrudController extends AbstractCrudController
 
         $fields=[
             IdField::new('id')->onlyOnIndex(),
-            TextField::new('title'),
+            TextField::new('title','Titre'),
             TextEditorField::new('description','Description')
                ->setFormType( CKEditorType::class),
-            TimeField::new('createdAt')->onlyOnIndex(),
-            TimeField::new('updatedAt')->onlyOnIndex(),
+            TimeField::new('createdAt','Création')->onlyOnIndex(),
+            TimeField::new('updatedAt', 'Modification')->onlyOnIndex(),
         ];
 
         if ($pageName === Crud::PAGE_INDEX || $pageName === Crud::PAGE_DETAIL) {

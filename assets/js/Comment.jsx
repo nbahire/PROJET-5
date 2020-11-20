@@ -15,7 +15,7 @@ function Comments({ post }) {
     return <div >
         <Title count={count} />
         {comments.map(c => <Comment key={c.id} comment={c} />)}
-        {hasMore && < button disabled={loading} className="btn btn-default " onClick={load}>Charger plus de commentaires</button>}
+        {hasMore && < button disabled={loading} className="btn btn-success " onClick={load}>Charger plus de commentaires</button>}
     </div>
 }
 

@@ -2,9 +2,114 @@
 
 {% block body %}
 
+	<div class="col-lg-12">
 
-<h1>
-augafuaaou
-</h1>
+		<section class="panel">
+			<header class="py-2 panel-heading" style="background-color: #89bfff; color: white">
+
+				Your Settings
+			</header>
+			<div class="panel-body">
+				<form class="form-horizontal bucket-form" method="post">
+					<div class="form-group">
+						<label class="col-sm-3 control-label col-lg-3">Email</label>
+						<div class="col-lg-6">
+							<div class="input-group m-bot15">
+								<i class="p-2 rounded-left fas fa-at"></i>
+								<input type="text" class="form-control" value="gramniang@gmail.com (You can not modify your email.)" readonly="">
+
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label col-lg-3">Username</label>
+						<div class="col-lg-6">
+							<div class="input-group m-bot15">
+								<span class="input-group-addon btn-danger">
+									<i class=" p-2 rounded-left fa fa-user"></i>
+								</span>
+								<input type="text" class="form-control" value="gramniang (You can not modify your username.)" readonly="">
+							</div>
+							<!--<button type="submit" class="btn btn-info">Submit</button>-->
+						</div>
+
+					</div>
+
+				</form>
+			</div>
+		</section>
+
+		<section class="panel">
+			<header class="py-2 panel-heading" style="background-color: #89bfff; color: white">
+
+				Change Password
+			</header><br>
+			<div class="panel-body">
+				<form class="form-horizontal bucket-form" method="post">
+					<div class="login-errore" id="notsame" style="display: none;">
+						<h3>Error!</h3>
+						<p>
+							<strong>Passwords</strong>
+							don't match.</p>
+					</div>
+					<div class="login-errore" id="badcurrent" style="display: none;">
+						<h3>Error!</h3>
+						<p>Your
+							<strong>current password</strong>
+							is not the same.</p>
+					</div>
+					<div class="login-success" style="display: none;">
+						<h3>Success!</h3>
+						<p>Your
+							<strong>password</strong>
+							has been successfully changed.</p>
+					</div>
+					<div class="form-group">
+						<label class=" col-sm-3 control-label col-lg-3">Current Password</label>
+
+						<div class="col-lg-6">
+							<div class="input-group m-bot15">
+								<span class="input-group-addon btn-danger">
+									<i class=" p-2 rounded-left fa fa-lock"></i>
+
+								</span>
+								<input type="password" name="currentpassword" class="form-control">
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-3 control-label col-lg-3">New Password</label>
+						<div class="col-lg-6">
+							<div class="input-group m-bot15">
+								<span class="input-group-addon btn-success">
+									<i class=" p-2 rounded-left fa fa-unlock-alt"></i>
+
+								</span>
+								<input type="password" name="newpassword" class="form-control">
+							</div>
+						</div>
+
+					</div>
+					<div class="form-group">
+						<label class=" col-sm-3 control-label col-lg-3">Confirm Password</label>
+						<div class="col-lg-6">
+							<div class="input-group m-bot15">
+								<span class="input-group-addon btn-success">
+									<i class=" p-2 rounded-left fa fa-unlock-alt"></i>
+
+								</span>
+								<input type="password" name="confirmpassword" class="form-control">
+							</div>
+							<button type="submit" class="btn btn-info">Submit</button>
+						</div>
+
+					</div>
+
+				</form>
+			</div>
+		</section>
+
+	</div>
 
 {% endblock %}
