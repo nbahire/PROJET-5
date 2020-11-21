@@ -24,18 +24,22 @@
 		{{ include("layouts/partials/_nav.html.twig") }}
 		<header role="header" class=" mt-5 py-5 site-banner  masthead text-white" style="background-color: #0E1C2A;">
 
-			<div class="container"> {% block header %}{% endblock %}
-
-				</div>
-
-			</header>
-
-			<main role="main" class="container mt-0"> {% block body %}{% endblock %}
-				</main>
-
-				{{ include("layouts/partials/_footer.html.twig") }}
-				{% block javascripts %}
-					{{encore_entry_script_tags('app')}}
+			<div class="container">
+				{{ include('layouts/partials/_flash_messages.html.twig')}}
+				{% block header %}
+	
 				{% endblock %}
-			</body>
-		</html>
+
+			</div>
+
+		</header>
+
+		<main role="main" class="container mt-0"> {% block body %}{% endblock %}
+			</main>
+
+			{{ include("layouts/partials/_footer.html.twig") }}
+			{% block javascripts %}
+				{{encore_entry_script_tags('app')}}
+			{% endblock %}
+		</body>
+	</html>
