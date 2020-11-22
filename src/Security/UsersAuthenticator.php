@@ -71,7 +71,7 @@ class UsersAuthenticator extends AbstractFormLoginAuthenticator implements Passw
 
         if (!$user) {
             // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException('Email could not be found.');
+            throw new CustomUserMessageAuthenticationException('Invalid credentials.');
         }
 
         return $user;
@@ -92,6 +92,8 @@ class UsersAuthenticator extends AbstractFormLoginAuthenticator implements Passw
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey)
     {
+        $request->getSession()->getFlashBag()->add('success', 'Wellcome ' . $token->getUser()->getName() . ' !');
+
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
@@ -103,7 +105,7 @@ class UsersAuthenticator extends AbstractFormLoginAuthenticator implements Passw
         if ($session = $request->getSession()->get('referer')) {
             return new RedirectResponse($session);
         }
-
+        return new RedirectResponse($this->urlGenerator->generate('app_home'));
         //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
