@@ -5,6 +5,8 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     app.path.featured_images: /uploads/images/featured
+    app.mail_from_name: 'My portofolio'
+    app.mail_from_address: 'no-reply@myportofolio.net'
 services:
     # default configuration for services in *this* file
     _defaults:
