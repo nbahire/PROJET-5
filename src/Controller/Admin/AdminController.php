@@ -68,11 +68,6 @@ class AdminController extends AbstractDashboardController
         ;
     }
     
-    public function configureAssets(): Assets
-    {
-       return Assets::new()
-            ->addCssFile('bundles/easyadmin/css/style.css');
-    }
 
     public function configureMenuItems(): iterable
     {
