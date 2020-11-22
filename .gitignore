@@ -21,3 +21,6 @@
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
+###> custum app ignores ###
+/public/uploads/
+###< end custum app ignores ###
