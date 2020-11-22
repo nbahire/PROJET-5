@@ -92,7 +92,7 @@ class UsersAuthenticator extends AbstractFormLoginAuthenticator implements Passw
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey)
     {
-        $request->getSession()->getFlashBag()->add('success', 'Wellcome ' . $token->getUser()->getName() . ' !');
+        $request->getSession()->getFlashBag()->add('success', 'Bienvenue ' . $token->getUser()->getName() . ' !');
 
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);

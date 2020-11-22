@@ -44,24 +44,23 @@
 
 						</div>
 					</div>
-					<a href="{{path('app_forgot_password_request')}}">Mot de passe oublié</a>
-				</p>
+					<a href="{{path('app_forgot_password_request')}}">Mot de passe oublié ?</a>
 
-			</div>
+				</div>
 
-			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-			<button class="btn btn-lg btn-success btn-block" type="submit">
+				<button class="btn btn-lg btn-success btn-block" type="submit">
 
-				Se connecter
-			</button>
-
-
-		</form>
-	<p class="mt-5 mb-3 text-center text-muted">Pas encore de compte ?
-		<a href="{{path('app_register')}}">Créer un compte</a>
-	</p>
-	</div>
+					Se connecter
+				</button>
 
 
-{% endblock %}
+			</form>
+			<p class="mt-5 mb-3 text-center text-muted">Pas encore de compte ?
+				<a href="{{path('app_register')}}">Créer un compte</a>
+			</p>
+		</div>
+
+
+	{% endblock %}

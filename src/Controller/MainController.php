@@ -33,7 +33,7 @@ class MainController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $email = (new TemplatedEmail())
                 ->from($contact->get('email')->getData())
-                ->to(new Address('moi@gmail.com'))
+                ->to(new Address('contat@myportefolio.webagency-projets.info'))
                 ->subject('Contact par le biai du formulaire de contact')
 
                 // path of the Twig template to render
