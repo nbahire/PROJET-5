@@ -22,6 +22,7 @@ security:
                 authenticators:
                     - App\Security\UsersAuthenticator
             logout:
+                csrf_token_generator: security.csrf.token_manager
                 path: app_logout
 
             remember_me:
