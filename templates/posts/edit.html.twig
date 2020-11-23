@@ -1,14 +1,17 @@
 {% extends 'layouts/base.html.twig' %}
 
 {% block title 'Edit post#' ~ post.id %}
+{% block header %}
+<h1 class="mt-3 text-center">Editer l'article n°{{post.id}}</h1>
 
+
+{% endblock %}
 
 {% block body %}
-	<div class="row">
-		<div class="col-md-6 mx-auto">
+<div class="row  py-5 my-5">
+	<div class="col-10  mx-auto">
 
-			<h1>Edit post #{{post.id}}</h1>
-			<div class="form">
+			<div class="p-4 form">
 				{{ include ("posts/_form.html.twig",{ submitButtonText:'Editer' })}}
 			</div>
 		</div>

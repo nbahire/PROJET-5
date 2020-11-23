@@ -24,3 +24,7 @@ yarn-error.log
 ###> custum app ignores ###
 /public/uploads/
 ###< end custum app ignores ###
+
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###
