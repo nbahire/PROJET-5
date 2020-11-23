@@ -29,14 +29,12 @@
 				<p class="h3">Liste des articles</p>
 				<ul class="list-group">
 					{% for post in posts %}
-						<a href="" class="">
 
-							<li class="h2 list-group-item list-group-item-action list-group-item-info d-flex justify-content-between align-items-center">
+						<li class="h2 list-group-item list-group-item-action list-group-item-info d-flex justify-content-between align-items-center">
 
-								{{post.title}}
-								<img class="col-1 img-thumbnail" src=" /uploads/images/{{post.imageName}} " alt=" ">
-							</li>
-						</a>
+							{{post.title}}
+							<img class="col-1 img-thumbnail" src=" /uploads/images/{{post.imageName}} " alt=" ">
+						</li>
 
 					{% endfor %}
 				</ul>

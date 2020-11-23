@@ -25,17 +25,17 @@ class UsersCrudController extends AbstractCrudController
             ->update(Crud::PAGE_INDEX, Action::DELETE, function (Action $action) {
                 return $action->setIcon('fa fa-trash')
                     ->setLabel('Supprimer')
-                    ->setCssClass('btn btn-danger');
+                    ->addCssClass('text-light btn btn-danger');
             })
             ->update(Crud::PAGE_INDEX, Action::EDIT, function (Action $action) {
                 return $action->setIcon('fa fa-edit')
                 ->setLabel('Editer')
-                ->setCssClass('btn btn-info');
+                ->addCssClass('text-light btn btn-info');
             })
             ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
                 return $action->setIcon('fa fa-plus')
                     ->setLabel('Nouvel utilisateur')
-                    ->setCssClass('btn btn-success');
+                    ->addCssClass('text-light btn btn-success');
             });
 
     }

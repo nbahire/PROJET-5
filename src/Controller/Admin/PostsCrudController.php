@@ -37,17 +37,17 @@ class PostsCrudController extends AbstractCrudController
             ->update(Crud::PAGE_INDEX, Action::DELETE, function (Action $action) {
                 return $action->setIcon('fa fa-trash')
                 ->setLabel('Supprimer')
-                ->setCssClass('btn btn-danger');
+                ->addCssClass('text-light btn btn-danger');
             })
             ->update(Crud::PAGE_INDEX, Action::EDIT, function (Action $action) {
                 return $action->setIcon('fa fa-edit')
                     ->setLabel('Editer')
-                    ->setCssClass('btn btn-info');
+                    ->addCssClass('text-light btn btn-info');
             })
             ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
                 return $action->setIcon('fa fa-plus')
                     ->setLabel('Nouvel article')
-                    ->setCssClass('btn btn-success');
+                    ->addCssClass('text-light btn btn-success');
             });
     }
     public function configureFields(string $pageName): iterable
@@ -69,11 +69,6 @@ class PostsCrudController extends AbstractCrudController
             TimeField::new('updatedAt', 'Modification')->onlyOnIndex(),
         ];
 
-        if ($pageName === Crud::PAGE_INDEX || $pageName === Crud::PAGE_DETAIL) {
-            $fields[] = $image;
-        } else {
-            $fields[] = $imageFields;
-        }
         
         return $fields;
     }
