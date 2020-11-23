@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "01a1216f4d81978a4110841875430391",
+    "content-hash": "0575311c585f356f1310cb45d9dd6608",
     "packages": [
         {
             "name": "api-platform/core",
@@ -1533,16 +1533,16 @@
         },
         {
             "name": "easycorp/easyadmin-bundle",
-            "version": "v3.1.8",
+            "version": "v3.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/EasyCorp/EasyAdminBundle.git",
-                "reference": "ce9a162fad46baafba9eaa331ee485b2949c21b3"
+                "reference": "43ef9306b62de6bbb5cec5c3e0d752cc7bbefce8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/EasyCorp/EasyAdminBundle/zipball/ce9a162fad46baafba9eaa331ee485b2949c21b3",
-                "reference": "ce9a162fad46baafba9eaa331ee485b2949c21b3",
+                "url": "https://api.github.com/repos/EasyCorp/EasyAdminBundle/zipball/43ef9306b62de6bbb5cec5c3e0d752cc7bbefce8",
+                "reference": "43ef9306b62de6bbb5cec5c3e0d752cc7bbefce8",
                 "shasum": ""
             },
             "require": {
@@ -1618,7 +1618,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-11-18T07:15:20+00:00"
+            "time": "2020-11-14T11:39:35+00:00"
         },
         {
             "name": "egulias/email-validator",

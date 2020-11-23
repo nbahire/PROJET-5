@@ -69,6 +69,11 @@ class PostsCrudController extends AbstractCrudController
             TimeField::new('updatedAt', 'Modification')->onlyOnIndex(),
         ];
 
+        if ($pageName === Crud::PAGE_INDEX || $pageName === Crud::PAGE_DETAIL) {
+            $fields[] = $image;
+        } else {
+            $fields[] = $imageFields;
+        }
         
         return $fields;
     }
