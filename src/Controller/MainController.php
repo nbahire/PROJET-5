@@ -28,13 +28,13 @@ class MainController extends AbstractController
      */
     public function contact(Request $request, MailerInterface $mailer)
     {
-        $form= $this->createForm(ContactFormType::class);
+        $form = $this->createForm(ContactFormType::class);
         $contact = $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $email = (new TemplatedEmail())
                 ->from($contact->get('email')->getData())
-                ->to(new Address('contat@myportefolio.webagency-projets.info'))
-                ->subject('Contact par le biai du formulaire de contact')
+                ->to(new Address('no-reply@contact.com'))
+                ->subject('Contact par le biai du formulaire de contact', 'My-portofolio admin')
 
                 // path of the Twig template to render
                 ->htmlTemplate('emails/contact_email.html.twig')
@@ -45,14 +45,13 @@ class MainController extends AbstractController
                     'mail' => $contact->get('email')->getData(),
                     'message' => $contact->get('message')->getData(),
                 ]);
-                $mailer->send($email);
+            $mailer->send($email);
 
-                $this->addFlash('success','Votre message a bien été envoyé');
-                return $this->redirectToRoute('app_contact');
+            $this->addFlash('success', 'Votre message a bien été envoyé');
+            return $this->redirectToRoute('app_contact');
         }
-        return $this->render('main/contact.html.twig',[
-            'form'=>$form->createView()
+        return $this->render('main/contact.html.twig', [
+            'form' => $form->createView()
         ]);
     }
-
 }
