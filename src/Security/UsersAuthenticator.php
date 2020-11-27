@@ -92,15 +92,20 @@ class UsersAuthenticator extends AbstractFormLoginAuthenticator implements Passw
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey)
     {
-        $request->getSession()->getFlashBag()->add('success', 'Bienvenue ' . $token->getUser()->getName() . ' !');
+        if ($token->getUser()->isVerified() === true) {
+            $request->getSession()->getFlashBag()->add('success', 'Bienvenue ' . $token->getUser()->getName() . ' !');
+        }else{
+
+            $request->getSession()->getFlashBag()->add('success', 'Inscription reussi ! Un e-mail de validation vous a été envoyé.');
+        };
 
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
-            if (in_array('ROLE_ADMIN',$token->getRoleNames())) {
+        if (in_array('ROLE_ADMIN', $token->getRoleNames())) {
 
-                return new RedirectResponse($this->urlGenerator->generate('app_admin_'));
-            };
+            return new RedirectResponse($this->urlGenerator->generate('app_admin_'));
+        };
 
         if ($session = $request->getSession()->get('referer')) {
             return new RedirectResponse($session);

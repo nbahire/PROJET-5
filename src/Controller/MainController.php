@@ -30,25 +30,28 @@ class MainController extends AbstractController
     {
         $form = $this->createForm(ContactFormType::class);
         $contact = $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $email = (new TemplatedEmail())
-                ->from($contact->get('email')->getData())
-                ->to(new Address('no-reply@contact.com'))
-                ->subject('Contact par le biai du formulaire de contact', 'My-portofolio admin')
+        if ($this->isCsrfTokenValid('contact_form_', $request->request->get('csrf_token'))) {
 
-                // path of the Twig template to render
-                ->htmlTemplate('emails/contact_email.html.twig')
+            if ($form->isSubmitted() && $form->isValid()) {
+                $email = (new TemplatedEmail())
+                    ->from($contact->get('email')->getData())
+                    ->to(new Address('no-reply@contact.com', 'My-portofolio admin'))
+                    ->subject('Contact par le biai du formulaire de contact')
 
-                // pass variables (name => value) to the template
-                ->context([
-                    'Nom' => $contact->get('username')->getData(),
-                    'mail' => $contact->get('email')->getData(),
-                    'message' => $contact->get('message')->getData(),
-                ]);
-            $mailer->send($email);
+                    // path of the Twig template to render
+                    ->htmlTemplate('emails/contact_email.html.twig')
 
-            $this->addFlash('success', 'Votre message a bien été envoyé');
-            return $this->redirectToRoute('app_contact');
+                    // pass variables (name => value) to the template
+                    ->context([
+                        'Nom' => $contact->get('username')->getData(),
+                        'mail' => $contact->get('email')->getData(),
+                        'message' => $contact->get('message')->getData(),
+                    ]);
+                $mailer->send($email);
+
+                $this->addFlash('success', 'Votre message a bien été envoyé');
+                return $this->redirectToRoute('app_contact');
+            }
         }
         return $this->render('main/contact.html.twig', [
             'form' => $form->createView()

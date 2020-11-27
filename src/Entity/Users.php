@@ -194,7 +194,7 @@ class Users implements UserInterface
 
     /**
      * Get the value of name
-     */ 
+     */
     public function getName()
     {
         return $this->name;
@@ -204,7 +204,7 @@ class Users implements UserInterface
      * Set the value of name
      *
      * @return  self
-     */ 
+     */
     public function setName($name)
     {
         $this->name = $name;

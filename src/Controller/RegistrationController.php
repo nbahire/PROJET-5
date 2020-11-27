@@ -57,7 +57,7 @@ class RegistrationController extends AbstractController
                 'app_verify_email',
                 $user,
                 (new TemplatedEmail())
-                    ->from(new Address('no-reply@contact.com'))
+                    ->from(new Address( 'no-reply@contact.com', 'My-portofolio admin'))
                     ->to($user->getEmail())
                     ->subject('Veuillez confirmer votre email')
                     ->htmlTemplate('emails/confirmation_registration_email.html.twig')
@@ -70,6 +70,7 @@ class RegistrationController extends AbstractController
                 $authenticator,
                 'main' // firewall name in security.yaml
             );
+
         }
 
         return $this->render('registration/register.html.twig', [
