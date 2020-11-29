@@ -19,7 +19,7 @@ class MainController extends AbstractController
 
     public function index(Request $request, PostsRepository $postsRepository)
     {
-        $posts = $postsRepository->findBy([], ['createdAt' => 'DESC']);
+        $posts = $postsRepository->findBy([]);
         return $this->render('main/index.html.twig', compact('posts'));
     }
 
